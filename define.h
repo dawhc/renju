@@ -11,11 +11,11 @@
 #include <vector>
 using namespace std;
 
-#define blank 0		//¿Õ°×µã
-#define black 1		//ºÚ·½
-#define white 2		//°×·½
+#define blank 0		//ç©ºç™½ç‚¹
+#define black 1		//é»‘æ–¹
+#define white 2		//ç™½æ–¹
 #define inf 0x3f3f3f3f
-#define inboard(a,b) (a>0 && a<=15 && b>0 && b<=15)		//ÓÃÓÚ¼ìÑéÕÐ·¨ÊÇ·ñÔÚÆåÅÌÉÏ
+#define inboard(a,b) (a>0 && a<=15 && b>0 && b<=15)		//ç”¨äºŽæ£€éªŒæ‹›æ³•æ˜¯å¦åœ¨æ£‹ç›˜ä¸Š
 #define cvt_Player_to_Color(a) (a + 1)
 #define cvt_to_Rival_Clr(a) (3 - a)
 
@@ -38,7 +38,7 @@ struct point
 	}
 };
 
-//ÉùÃ÷
+//å£°æ˜Ž
 extern int chessBoard[GRID_NUM][GRID_NUM];
 
 extern int piecesCounter[3];

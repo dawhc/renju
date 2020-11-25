@@ -2,7 +2,7 @@
 
 int makeMove(struct point node, int color)
 {
-	//Âä×Ó
+	//è½å­
 	if (chessBoard[node.x][node.y]) return -1;
 	chessBoard[node.x][node.y] = color;
 	chessPieces[color][++piecesCounter[color]] = node;
@@ -11,7 +11,7 @@ int makeMove(struct point node, int color)
 
 int unMakeMove(struct point node)
 {
-	//³·ÏúÂä×Ó
+	//æ’¤é”€è½å­
 	if (!chessBoard[node.x][node.y]) return -1;
 	piecesCounter[chessBoard[node.x][node.y]]--;
 	chessBoard[node.x][node.y] = blank;

@@ -3,7 +3,7 @@
 point searchOrder[GRID_NUM * GRID_NUM];
 int searchOrder_counter;
 
-void initialize_for_CreateMoves() { // ¸ù¾İÎ»ÖÃÈ¨Öµ»ñµÃÕĞ·¨Ë³Ğò
+void initialize_for_CreateMoves() { // æ ¹æ®ä½ç½®æƒå€¼è·å¾—æ‹›æ³•é¡ºåº
 	memset(searchOrder, 0, sizeof(searchOrder));
 	searchOrder_counter = 0;
 	for (int i = 1; i < GRID_NUM; i++)
@@ -14,8 +14,8 @@ void initialize_for_CreateMoves() { // ¸ù¾İÎ»ÖÃÈ¨Öµ»ñµÃÕĞ·¨Ë³Ğò
 	sort(searchOrder + 1, searchOrder + searchOrder_counter + 1);
 }
 
-void createMoves(vector <point> &newMoves) { // Éú³ÉÕĞ·¨´úÂë
-	//ÆåÅÌÉÏµÄ¿Õ°×µã¾ùÎª¿ÉĞĞÕĞ·¨
+void createMoves(vector <point> &newMoves) { // ç”Ÿæˆæ‹›æ³•ä»£ç 
+	//æ£‹ç›˜ä¸Šçš„ç©ºç™½ç‚¹å‡ä¸ºå¯è¡Œæ‹›æ³•
 	vector <point> ().swap(newMoves);
 	for (int i = 1; i <= searchOrder_counter; i++)
 		if (!chessBoard[searchOrder[i].x][searchOrder[i].y])

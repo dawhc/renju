@@ -1,6 +1,6 @@
 #ifndef _SEARCHMOVES_
 #define _SEARCHMOVES_
-//×ß·¨Éú³ÉÆ÷
+//èµ°æ³•ç”Ÿæˆå™¨
 
 void initialize_for_CreateMoves();
 

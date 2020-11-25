@@ -1,6 +1,6 @@
 #include "define.h"
 
-//╢и╥х
+//хоЪф╣Й
 int counter;
 
 int chessBoard[GRID_NUM][GRID_NUM];

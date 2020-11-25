@@ -2,7 +2,7 @@
 
 #define UNVISITED 0
 #define VISITED 1
-// ÆåĞÍ±àºÅ
+// æ£‹å‹ç¼–å·
 #define TYPE_NUM 9
 #define _FIVE 1
 #define _FOUR 2
@@ -12,7 +12,7 @@
 #define _TWO 6
 #define _S_TWO 7
 #define _ONE 8
-// ÏÈÊÖÓÅÊÆ
+// å…ˆæ‰‹ä¼˜åŠ¿
 #define OFFENSIVE_WEIGHT 5
 
 int typeCounter[TYPE_NUM];
@@ -20,36 +20,36 @@ bool vis[GRID_NUM][GRID_NUM][4];
 bool visLine[GRID_NUM];
 
 int analysisPoint(int *line, int lineSize, int nowPos) {
-	// ·ÖÎöÄ³µãÔÚÄ³ÌõÏßÉÏµÄÆåĞÎ
+	// åˆ†ææŸç‚¹åœ¨æŸæ¡çº¿ä¸Šçš„æ£‹å½¢
 	int nowClr = line[nowPos];
 	int leftEdge = nowPos;
 	int rightEdge = nowPos;
 	memset(visLine, UNVISITED, sizeof(visLine));
-	// Êı×é³¤¶ÈĞ¡ÓÚ5ÎŞÒâÒå
+	// æ•°ç»„é•¿åº¦å°äº5æ— æ„ä¹‰
 	if (lineSize < 5) {
 		for (int i = 1; i <= lineSize; i++)
 			visLine[i] = VISITED;
 		return 0;
 	}
-	// Á¬×Ó·¶Î§
+	// è¿å­èŒƒå›´
 	while (leftEdge >= 1 && line[leftEdge] == nowClr) leftEdge--;
 	leftEdge++;
 	while (rightEdge <= lineSize && line[rightEdge] == nowClr) rightEdge++;
 	rightEdge--;
-	// ·ÇÕÏ°­·¶Î§
+	// ééšœç¢èŒƒå›´
 	int leftRange = leftEdge;
 	int rightRange = rightEdge;
 	while (leftRange >= 1 && line[leftRange] != cvt_to_Rival_Clr(nowClr)) leftRange--;
 	leftRange++;
 	while (rightRange <= lineSize && line[rightRange] != cvt_to_Rival_Clr(nowClr)) rightRange++;
 	rightRange--;
-	// ÎŞ·¨Á¬³ÉÎå×Ó
+	// æ— æ³•è¿æˆäº”å­
 	if (rightRange - leftRange < 4) {
 		for (int i = leftRange; i <= rightRange; i++)
 			visLine[i] = VISITED;
 		return 0;
 	}
-	// ·ÀÖ¹ÖØ¸´±ê¼Ç
+	// é˜²æ­¢é‡å¤æ ‡è®°
 	for (int i = leftEdge; i <= rightEdge; i++)
 		visLine[i] = VISITED;
 		
@@ -58,15 +58,15 @@ int analysisPoint(int *line, int lineSize, int nowPos) {
 	switch (rightEdge - leftEdge) {
 	case 3:
 		if (leftEdge > 1 && rightEdge < lineSize && !line[leftEdge - 1] && !line[rightEdge + 1])
-			return _FOUR; // »îËÄ1 .oooo.
+			return _FOUR; // æ´»å››1 .oooo.
 		else
-			return _S_FOUR; // ³åËÄ1 xoooo.
+			return _S_FOUR; // å†²å››1 xoooo.
 
 	case 2:
 		if (leftEdge > 2 && !line[leftEdge - 1] && line[leftEdge - 2] == nowClr &&
 			rightEdge < lineSize - 1 && !line[rightEdge + 1] && line[rightEdge + 2] == nowClr) {
 			visLine[leftEdge - 2] = visLine[rightEdge + 2] = VISITED;
-			return _FOUR; // »îËÄ2 o.ooo.o
+			return _FOUR; // æ´»å››2 o.ooo.o
 		}
 
 		else if (firstCase = (leftEdge > 2 && !line[leftEdge - 1] && line[leftEdge - 2] == nowClr) ||
@@ -75,18 +75,18 @@ int analysisPoint(int *line, int lineSize, int nowPos) {
 				visLine[leftEdge - 2] = VISITED;
 			else
 				visLine[rightEdge + 2] = VISITED;
-			return _S_FOUR; // ³åËÄ2 o.ooo
+			return _S_FOUR; // å†²å››2 o.ooo
 		}
 			
 
 		else if (leftEdge > 1 && rightEdge < lineSize && !line[leftEdge - 1] && !line[rightEdge + 1]) {
 			if (leftEdge > 2 && !line[leftEdge - 2] || rightEdge < lineSize - 1 && !line[rightEdge + 2])
-				return _THREE; //»îÈı1 ..ooo.
+				return _THREE; //æ´»ä¸‰1 ..ooo.
 			else
-				return _S_THREE; //ÃßÈı1 x.ooo.x
+				return _S_THREE; //çœ ä¸‰1 x.ooo.x
 		}
 		else
-			return _S_THREE; //ÃßÈı2 xooo..
+			return _S_THREE; //çœ ä¸‰2 xooo..
 
 	case 1:
 		if (firstCase = (leftEdge > 3 && !line[leftEdge - 1] && line[leftEdge - 2] == nowClr && line[leftEdge - 3] == nowClr) ||
@@ -95,7 +95,7 @@ int analysisPoint(int *line, int lineSize, int nowPos) {
 				visLine[leftEdge - 3] = visLine[leftEdge - 2] = VISITED;
 			else
 				visLine[rightEdge + 3] = visLine[rightEdge + 2] = VISITED;
-			return _S_FOUR; //³åËÄ3 oo.oo
+			return _S_FOUR; //å†²å››3 oo.oo
 		}
 
 		else if (firstCase = (leftEdge > 3 && !line[leftEdge - 3] && line[leftEdge - 2] == nowClr && !line[leftEdge - 1] && rightEdge < lineSize && !line[rightEdge + 1]) ||
@@ -104,7 +104,7 @@ int analysisPoint(int *line, int lineSize, int nowPos) {
 				visLine[leftEdge - 2] = VISITED;
 			else
 				visLine[rightEdge + 2] = VISITED;
-			return _THREE; //»îÈı2 .oo.o.
+			return _THREE; //æ´»ä¸‰2 .oo.o.
 		}
 			
 		else if (firstCase = (leftEdge > 3 && !line[leftEdge - 1] && !line[leftEdge - 2] && line[leftEdge - 3] == nowClr) ||
@@ -113,7 +113,7 @@ int analysisPoint(int *line, int lineSize, int nowPos) {
 				visLine[leftEdge - 3] = VISITED;
 			else
 				visLine[rightEdge + 3] = VISITED;
-			return _S_THREE; //ÃßÈı2 o..oo
+			return _S_THREE; //çœ ä¸‰2 o..oo
 		}
 
 		else if (firstCase = (leftEdge > 3 && !line[leftEdge - 3] && line[leftEdge - 2] == nowClr && !line[leftEdge - 1]) ||
@@ -122,7 +122,7 @@ int analysisPoint(int *line, int lineSize, int nowPos) {
 				visLine[leftEdge - 2] = VISITED;
 			else
 				visLine[rightEdge + 2] = VISITED;
-			return _S_THREE; //ÃßÈı3 .o.oox
+			return _S_THREE; //çœ ä¸‰3 .o.oox
 		}
 
 		else if (firstCase = (leftEdge > 1 && !line[leftEdge - 1] && rightEdge < lineSize - 1 && !line[rightEdge + 1] && line[rightEdge + 2] == nowClr) ||
@@ -131,32 +131,32 @@ int analysisPoint(int *line, int lineSize, int nowPos) {
 				visLine[rightEdge + 2] = VISITED;
 			else
 				visLine[leftEdge - 2] = VISITED;
-			return _S_THREE; //ÃßÈı4 .oo.ox
+			return _S_THREE; //çœ ä¸‰4 .oo.ox
 		}
 			
 		else if (leftEdge > 2 && !line[leftEdge - 2] && !line[leftEdge - 1] && rightEdge < lineSize - 1 && !line[rightEdge + 2] && !line[rightEdge + 1])
-			return _TWO; //»î¶ş1 ..oo..
+			return _TWO; //æ´»äºŒ1 ..oo..
 
-		else return _S_TWO; //¸÷ÖÖÃß¶ş
+		else return _S_TWO; //å„ç§çœ äºŒ
 
-	case 0: // Ö»ÓĞÒ»¸öÆå×ÓÔòÏò×óÆ¥Åä£¬·ñÔòÈİÒ×ÖØ¸´
+	case 0: // åªæœ‰ä¸€ä¸ªæ£‹å­åˆ™å‘å·¦åŒ¹é…ï¼Œå¦åˆ™å®¹æ˜“é‡å¤
 		if (leftEdge > 4 && line[leftEdge - 4] == nowClr && !line[leftEdge - 3] && line[leftEdge - 2] == nowClr && !line[leftEdge - 1]) {
 			visLine[leftEdge - 4] = visLine[leftEdge - 2] = VISITED;
-			return _S_THREE; //ÃßÈı5 o.o.o
+			return _S_THREE; //çœ ä¸‰5 o.o.o
 		}
 		
 		else if (leftEdge > 3 && !line[leftEdge - 3] && line[leftEdge - 2] == nowClr && !line[leftEdge - 1] && rightEdge < lineSize && !line[rightEdge + 1] &&
 			(leftEdge > 4 && !line[leftEdge - 4] || rightEdge - 1 && !line[rightEdge + 2])) {
 			visLine[leftEdge - 2] = VISITED;
-			return _TWO; //»î¶ş2 .o.o..
+			return _TWO; //æ´»äºŒ2 .o.o..
 		}
 
 		else if (leftEdge > 3 && line[leftEdge - 3] == nowClr && !line[leftEdge - 2] && !line[leftEdge - 1]) {
 			visLine[leftEdge - 3] = VISITED;
 			if (leftEdge > 4 && !line[leftEdge - 4] && rightEdge < lineSize && !line[rightEdge + 1])
-				return _TWO; //»î¶ş3 .o..o.
+				return _TWO; //æ´»äºŒ3 .o..o.
 			else
-				return _S_TWO; //Ãß¶ş xo..o.
+				return _S_TWO; //çœ äºŒ xo..o.
 		}
 
 		else {
@@ -165,7 +165,7 @@ int analysisPoint(int *line, int lineSize, int nowPos) {
 					break;
 				if (line[nowPos] == nowClr) {
 					visLine[nowPos] = VISITED;
-					return _S_TWO; //Ãß¶ş
+					return _S_TWO; //çœ äºŒ
 				}	
 			}
 			return _ONE;
@@ -176,9 +176,9 @@ int analysisPoint(int *line, int lineSize, int nowPos) {
 	}
 }
 
-int calcScore(int color)//¹ÀÖµËã·¨£¬·µ»Ø¹ÀÖµ
+int calcScore(int color)//ä¼°å€¼ç®—æ³•ï¼Œè¿”å›ä¼°å€¼
 {
-	//Í³¼ÆÆåĞÍ½øĞĞ¹ÀÖµ
+	//ç»Ÿè®¡æ£‹å‹è¿›è¡Œä¼°å€¼
 	memset(vis, UNVISITED, sizeof(vis));
 	memset(typeCounter, 0, sizeof(typeCounter));
 	int temp_Line[GRID_NUM];
@@ -186,7 +186,7 @@ int calcScore(int color)//¹ÀÖµËã·¨£¬·µ»Ø¹ÀÖµ
 		int i = chessPieces[color][c].x;
 		int j = chessPieces[color][c].y;
 		if (!vis[i][j][0]) {
-			// Ë®Æ½·½ÏòÅĞ¶ÏÆåĞÎ
+			// æ°´å¹³æ–¹å‘åˆ¤æ–­æ£‹å½¢
 			for (int k = 1; k < GRID_NUM; k++)
 				temp_Line[k] = chessBoard[i][k];
 
@@ -197,7 +197,7 @@ int calcScore(int color)//¹ÀÖµËã·¨£¬·µ»Ø¹ÀÖµ
 				vis[i][k][0] |= visLine[k];
 		}
 		if (!vis[i][j][1]) {
-			// ÊúÖ±·½ÏòÅĞ¶ÏÆåĞÎ
+			// ç«–ç›´æ–¹å‘åˆ¤æ–­æ£‹å½¢
 			for (int k = 1; k < GRID_NUM; k++)
 				temp_Line[k] = chessBoard[k][j];
 
@@ -208,9 +208,9 @@ int calcScore(int color)//¹ÀÖµËã·¨£¬·µ»Ø¹ÀÖµ
 				vis[k][j][1] |= visLine[k];
 		}
 		if (!vis[i][j][2]) {
-			// ×óĞ±¶Ô½Ç·½ÏòÅĞ¶ÏÆåĞÎ
+			// å·¦æ–œå¯¹è§’æ–¹å‘åˆ¤æ–­æ£‹å½¢
 			int lineSize = 0;
-			// »ñµÃ×óĞ±¶Ô½ÇÏßµÄÇø¼ä
+			// è·å¾—å·¦æ–œå¯¹è§’çº¿çš„åŒºé—´
 			int k_start = -GRID_NUM;
 			int k_end = GRID_NUM;
 			int nowPos;
@@ -229,9 +229,9 @@ int calcScore(int color)//¹ÀÖµËã·¨£¬·µ»Ø¹ÀÖµ
 				vis[i + k][j + k][2] |= visLine[t];
 		}
 		if (!vis[i][j][3]) {
-			// ÓÒĞ±¶Ô½Ç·½ÏòÅĞ¶ÏÆåĞÎ
+			// å³æ–œå¯¹è§’æ–¹å‘åˆ¤æ–­æ£‹å½¢
 			int lineSize = 0;
-			// »ñµÃÓÒĞ±¶Ô½ÇÏßµÄÇø¼ä
+			// è·å¾—å³æ–œå¯¹è§’çº¿çš„åŒºé—´
 			int k_start = -GRID_NUM;
 			int k_end = GRID_NUM;
 			int nowPos;
@@ -251,7 +251,7 @@ int calcScore(int color)//¹ÀÖµËã·¨£¬·µ»Ø¹ÀÖµ
 		}
 	}
 
-	// ¶ÔÍ³¼Æ½á¹û½øĞĞ¼ÓÈ¨Ëã·Ö
+	// å¯¹ç»Ÿè®¡ç»“æœè¿›è¡ŒåŠ æƒç®—åˆ†
 	if (typeCounter[_FIVE]) return 1000000;
 	if (typeCounter[_FOUR] || typeCounter[_S_FOUR] > 1) return 100000;
 	if (typeCounter[_S_FOUR] && typeCounter[_THREE]) return  90000;

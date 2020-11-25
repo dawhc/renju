@@ -1,9 +1,9 @@
 #ifndef _SEARCHMOVE_
 #define _SEARCHMOVE_
-//搜索核心
+//鎼滅储鏍稿績
 
-bool gameover(point nowPos); //判断棋局是否已经结束
+bool gameover(point nowPos); //鍒ゆ柇妫嬪眬鏄惁宸茬粡缁撴潫
 
-point getGoodMove(int player);//搜索核心
+point getGoodMove(int player);//鎼滅储鏍稿績
 
 #endif

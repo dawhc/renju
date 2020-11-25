@@ -6,6 +6,7 @@
 #define EXACT_VAL 0
 #define UPPER_BOUND 1
 #define LOWER_BOUND 2
+#define __int64 long long
 
 extern int nowHashKey32;
 extern __int64 nowHashKey64;

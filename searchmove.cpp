@@ -3,7 +3,7 @@
 #include "makemove.h"
 #include "evaluate.h"
 #include "hash.h"
-#define MAX_DEPTH 4 // ±ØĞëÊÇ¸öÅ¼Êı·ñÔòÈİÒ×ÅĞ¶ÏÊ§Îó
+#define MAX_DEPTH 4 // å¿…é¡»æ˜¯ä¸ªå¶æ•°å¦åˆ™å®¹æ˜“åˆ¤æ–­å¤±è¯¯
 
 vector <point> newMoves[256];
 int historyValTable[GRID_NUM][GRID_NUM];
@@ -23,9 +23,9 @@ inline void insertHistoryVal(point pos, int val) {
 }
 
 bool gameover(point nowPos) {
-	// ÅĞ¶ÏcolorÊÇ·ñÒÑ¾­Ê¤Àû
+	// åˆ¤æ–­coloræ˜¯å¦å·²ç»èƒœåˆ©
 
-	// Ë®Æ½·½Ïò
+	// æ°´å¹³æ–¹å‘
 	int leftEdge = nowPos.y;
 	int rightEdge = nowPos.y;
 	int color = chessBoard[nowPos.x][nowPos.y];
@@ -33,20 +33,20 @@ bool gameover(point nowPos) {
 	for (; rightEdge < GRID_NUM && chessBoard[nowPos.x][rightEdge] == color; rightEdge++); rightEdge--;
 	if (rightEdge - leftEdge > 3) return 1;
 
-	// ÊúÖ±·½Ïò
+	// ç«–ç›´æ–¹å‘
 	leftEdge = nowPos.x;
 	rightEdge = nowPos.x;
 	for (; leftEdge > 0 && chessBoard[leftEdge][nowPos.y] == color; leftEdge--); leftEdge++;
 	for (; rightEdge < GRID_NUM && chessBoard[rightEdge][nowPos.y] == color; rightEdge++); rightEdge--;
 	if (rightEdge - leftEdge > 3) return 1;
 
-	// ×óĞ±¶Ô½ÇÏß·½Ïò
+	// å·¦æ–œå¯¹è§’çº¿æ–¹å‘
 	leftEdge = rightEdge = 0;
 	for (; nowPos.x + leftEdge > 0 && nowPos.y + leftEdge > 0 && chessBoard[nowPos.x + leftEdge][nowPos.y + leftEdge] == color; leftEdge--); leftEdge++;
 	for (; nowPos.x + rightEdge < GRID_NUM && nowPos.y + rightEdge < GRID_NUM && chessBoard[nowPos.x + rightEdge][nowPos.y + rightEdge] == color; rightEdge++); rightEdge--;
 	if (rightEdge - leftEdge > 3) return 1;
 	
-	// ÓÒĞ±¶Ô½ÇÏß·½Ïò
+	// å³æ–œå¯¹è§’çº¿æ–¹å‘
 	leftEdge = rightEdge = 0;
 	for (; nowPos.x + leftEdge > 0 && nowPos.y - leftEdge < GRID_NUM && chessBoard[nowPos.x + leftEdge][nowPos.y - leftEdge] == color; leftEdge--); leftEdge++;
 	for (; nowPos.x + rightEdge < GRID_NUM && nowPos.y - rightEdge > 0 && chessBoard[nowPos.x + rightEdge][nowPos.y - rightEdge] == color; rightEdge++); rightEdge--;
@@ -57,7 +57,7 @@ bool gameover(point nowPos) {
 
 int alphabeta(int depth, int alpha, int beta, int player)
 {
-	//ËÑË÷Ö÷Ìå
+	//æœç´¢ä¸»ä½“
 	counter++;
 	int val = searchHashTable(alpha, beta, depth, player);
   	if (val != NOT_FOUNDED) 
@@ -73,7 +73,7 @@ int alphabeta(int depth, int alpha, int beta, int player)
 	createMoves(newMoves[depth]);
 
 	int newMoves_counter = newMoves[depth].size();
-	// »ñµÃÒ»¸öËÑË÷Ë³Ğò
+	// è·å¾—ä¸€ä¸ªæœç´¢é¡ºåº
 	for (int i = 0; i < newMoves_counter; i++)
 		newMoves[depth][i].val = getHistoryVal(newMoves[depth][i]);
 	sort(newMoves[depth].begin(), newMoves[depth].end());
@@ -137,9 +137,9 @@ int alphabeta(int depth, int alpha, int beta, int player)
 	return a;
 }
 
-point getGoodMove(int player) //µÃµ½ÕĞ·¨£¬Èç¹û³¬Ê±Ö±½Ó·µ»ØÎŞĞ§½â¡£
+point getGoodMove(int player) //å¾—åˆ°æ‹›æ³•ï¼Œå¦‚æœè¶…æ—¶ç›´æ¥è¿”å›æ— æ•ˆè§£ã€‚
 {
-	//ÕâÀïÊÇalphabetaµÄµÚÒ»²ã
+	//è¿™é‡Œæ˜¯alphabetaçš„ç¬¬ä¸€å±‚
 	
 
 	initialize_for_Hash();

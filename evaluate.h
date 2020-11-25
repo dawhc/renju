@@ -1,9 +1,9 @@
 #ifndef _EVALUATE_
 #define _EVALUATE_
-//¹ÀÖµºËÐÄ
+//ä¼°å€¼æ ¸å¿ƒ
 
 
-int evaluate(int color);//¹ÀÖµËã·¨£¬·µ»Ø¹ÀÖµ
+int evaluate(int color);//ä¼°å€¼ç®—æ³•ï¼Œè¿”å›žä¼°å€¼
 
 
 #endif

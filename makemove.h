@@ -1,12 +1,12 @@
 #ifndef _MAKEMOVE_
 #define _MAKEMOVE_
-//ÕÐ·¨Ö´ÐÐÆ÷
+//æ‹›æ³•æ‰§è¡Œå™¨
 
 #include "define.h"
 
-int makeMove(struct point node, int color);//Ö´ÐÐÕÐ·¨
+int makeMove(struct point node, int color);//æ‰§è¡Œæ‹›æ³•
 
-int unMakeMove(struct point node);//³·ÏúÕÐ·¨
+int unMakeMove(struct point node);//æ’¤é”€æ‹›æ³•
 
 
 #endif

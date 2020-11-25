@@ -3,35 +3,35 @@
 void judge(int i, int j)
 {
 	if (i == 1 && j == 1)
-		printf("®X");
+		printf("‚ïî");
 	else if (i == 1 && j == 15) {
 		if (!chessBoard[i][j - 1]) printf(" ");
-		printf("®[");
+		printf("‚ïó");
 	}
 	else if (i == 15 && j == 1)
-		printf("®^");
+		printf("‚ïö");
 	else if (i == 15 && j == 15) {
 		if (!chessBoard[i][j - 1]) printf(" ");
-		printf("®a");
+		printf("‚ïù");
 	}
 	else if (i == 1 && j != 15 && j != 1) {
 		if (!chessBoard[i][j - 1]) printf(" ");
-		printf("©”");
+		printf("‚îØ");
 	}
 	else if (i == 15 && j != 15 && j != 1) {
 		if (!chessBoard[i][j - 1]) printf(" ");
-		printf("©€");
+		printf("‚î∑");
 	}
 	else if (j == 1 && i != 15 && i != 1)
-		printf("©ƒ");
+		printf("‚î†");
 	else if (j == 15 && i != 15 && i != 1) {
 		if (!chessBoard[i][j - 1]) printf(" ");
-		printf("©Ã");
+		printf("‚î®");
 	}
 		
 	else {
 		if (!chessBoard[i][j - 1]) printf(" ");
-		printf("©‡");
+		printf("‚îº");
 	}
 		
 }
@@ -58,12 +58,12 @@ void print()
 
 			if (chessBoard[i][j] == 1) {
 				if (j != 1 && !chessBoard[i][j - 1]) printf(" ");
-				printf("°");
+				printf("‚óã ");
 			}
 				
 			else if (chessBoard[i][j] == 2) {
 				if (j != 1 && !chessBoard[i][j - 1]) printf(" ");
-				printf("°Ò");
+				printf("‚óè ");
 			}
 			else
 				judge(i, j);

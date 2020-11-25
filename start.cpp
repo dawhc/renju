@@ -5,10 +5,10 @@
 
 int main()
 {
-	cout << "*************»¶Ó­À´µ½Îå×ÓÆåÈË»ú¶ÔŞÄÏµÍ³*************" << endl;
-	cout << "ÊäÈë: newblack  µçÄÔÏÈÊÖ" << endl;
-	cout << "ÊäÈë: newwhite  µçÄÔºóÊÖ" << endl;
-	cout << "ÊäÈë: move x y  ±íÊ¾Âä×Óµã" << endl; 
+	cout << "*************æ¬¢è¿æ¥åˆ°äº”å­æ£‹äººæœºå¯¹å¼ˆç³»ç»Ÿ*************" << endl;
+	cout << "è¾“å…¥: newblack  ç”µè„‘å…ˆæ‰‹" << endl;
+	cout << "è¾“å…¥: newwhite  ç”µè„‘åæ‰‹" << endl;
+	cout << "è¾“å…¥: move x y  è¡¨ç¤ºè½å­ç‚¹" << endl; 
 	print();
 	char input[64];
 	int errCounter = 0;
@@ -16,10 +16,10 @@ int main()
 
 	while (~scanf("%s", input))
 	{
-		if (strcmp(input, "newblack") == 0)//µçÄÔÏÈÊÖ
+		if (strcmp(input, "newblack") == 0)//ç”µè„‘å…ˆæ‰‹
 		{
 			if (isStart) {
-				puts("Artificial Idiot£ºÀÏ¸ç£¿ĞÑĞÑ£¡ÒÑ¾­¿ªÊ¼ÁË£¡");
+				puts("Artificial Idiotï¼šè€å“¥ï¼Ÿé†’é†’ï¼å·²ç»å¼€å§‹äº†ï¼");
 				continue;
 			}
 			else isStart = 1;
@@ -27,36 +27,36 @@ int main()
 			point newMove = getGoodMove(black);
 			makeMove(newMove, black);
 			print();
-			puts("Artificial Idiot£º¸ÃÄãÀ±");
+			puts("Artificial Idiotï¼šè¯¥ä½ è¾£");
 		}
-		else if (strcmp(input, "newwhite") == 0)//µçÄÔºóÊÖ
+		else if (strcmp(input, "newwhite") == 0)//ç”µè„‘åæ‰‹
 		{
 			if (isStart) {
-				puts("Artificial Idiot£ºÀÏ¸ç£¿ĞÑĞÑ£¡ÒÑ¾­¿ªÊ¼ÁË£¡");
+				puts("Artificial Idiotï¼šè€å“¥ï¼Ÿé†’é†’ï¼å·²ç»å¼€å§‹äº†ï¼");
 				continue;
 			}
 			else isStart = 1;
 			errCounter = 0;
 		
-			puts("Artificial Idiot£ºÄãÏÈÏÂ¾ÍÄãÏÈÏÂ£¬ÄãÒÔÎªÄãÏÈÏÂÄã¾Í»áÓ®£¿");
+			puts("Artificial Idiotï¼šä½ å…ˆä¸‹å°±ä½ å…ˆä¸‹ï¼Œä½ ä»¥ä¸ºä½ å…ˆä¸‹ä½ å°±ä¼šèµ¢ï¼Ÿ");
 			continue;
 		}
-		else if (input[0] == 'm')//Íæ¼ÒÂä×Ó
+		else if (input[0] == 'm')//ç©å®¶è½å­
 		{
 			errCounter = 0;
 			int input_x, input_y;
 			scanf("%d%d", &input_x, &input_y);
 			if (!inboard(input_x, input_y)) {
-				puts("Artificial Idiot £º¹ö»ØÈ¥ÖØÊä£¡");
+				puts("Artificial Idiot ï¼šæ»šå›å»é‡è¾“ï¼");
 				continue;
 			}
 			if (makeMove(point(input_x, input_y), white) == -1) {
-				puts("Artificial Idiot£ºÄã¼ÒÎå×ÓÆå¿ÉÒÔ³Ô×Ó¶ù£¿");
+				puts("Artificial Idiotï¼šä½ å®¶äº”å­æ£‹å¯ä»¥åƒå­å„¿ï¼Ÿ");
 				continue;
 			}
 			print();
 			if (gameover(point(input_x, input_y))) {
-				return puts("Artificial Idiot£ºwoc6°¡£¡wsl¡­¡­"), 0;
+				return puts("Artificial Idiotï¼šwoc6å•Šï¼wslâ€¦â€¦"), 0;
 			}
 			point newMove = getGoodMove(black);
 			makeMove(newMove, black);
@@ -67,24 +67,24 @@ int main()
 
 			printf("Move: %d, %d\n", newMove.x, newMove.y);
 			if (gameover(newMove)) {
-				return puts("Artificial Idiot£º¹§Ï²Äã£¡¾­¼ì²âÄãµÄÖÇÉÌÎª-INF£¡"), 0;
+				return puts("Artificial Idiotï¼šæ­å–œä½ ï¼ç»æ£€æµ‹ä½ çš„æ™ºå•†ä¸º-INFï¼"), 0;
 			}
-			puts("Artificial Idiot£º¸ÃÄãÀ±");
+			puts("Artificial Idiotï¼šè¯¥ä½ è¾£");
 		}
 		else
 		{
 			switch (++errCounter) {
 			case 1:
-				puts("Artificial Idiot£ºÓĞ¶¾£¿Äã¿´¿´ÄãÊäÈëµÄÊ²Ã´ÍæÒâ");
+				puts("Artificial Idiotï¼šæœ‰æ¯’ï¼Ÿä½ çœ‹çœ‹ä½ è¾“å…¥çš„ä»€ä¹ˆç©æ„");
 				break;
 			case 2:
-				puts("Artificial Idiot: £¿£¿£¿ÄãÒªÔÙÕâÑùxjbÊä¾ÍËãÎÒÖ±½ÓÓ®ÁË");
+				puts("Artificial Idiot: ï¼Ÿï¼Ÿï¼Ÿä½ è¦å†è¿™æ ·xjbè¾“å°±ç®—æˆ‘ç›´æ¥èµ¢äº†");
 				break;
 			case 3:
-				puts("Artificial Idiot: ÎÒÕæÒªÓ®ÁË°¡¡­¡­");
+				puts("Artificial Idiot: æˆ‘çœŸè¦èµ¢äº†å•Šâ€¦â€¦");
 				break;
 			case 4:
-				return puts("Artificial Idiot: ºÃ£¡ÎÒÓ®ÁË£¡¸æ´Ç~"), 0;
+				return puts("Artificial Idiot: å¥½ï¼æˆ‘èµ¢äº†ï¼å‘Šè¾~"), 0;
 				break;
 			}
 			continue;
@@ -97,9 +97,9 @@ int main()
 
 
 /*
-cÓïÑÔ±àÒëÔ­Àí
-Í·ÎÄ¼şÓÃ·¨
-#ifndef¡¢#def¡¢#endifµÈºêµÄÓÃ·¨
+cè¯­è¨€ç¼–è¯‘åŸç†
+å¤´æ–‡ä»¶ç”¨æ³•
+#ifndefã€#defã€#endifç­‰å®çš„ç”¨æ³•
 http://www.51hei.com/bbs/dpj-54868-1.html
 http://www.51hei.com/bbs/dpj-28952-1.html
 http://www.51hei.com/bbs/dpj-46187-1.html
